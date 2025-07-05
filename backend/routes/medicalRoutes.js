@@ -9,5 +9,7 @@ const router = express.Router();
 
 router.post("/create", authMiddleware, createMedicalRecord);
 router.get("/filter", authMiddleware, getFilteredRecords);
+// router.post("/create", createMedicalRecord);
+// router.get("/filter", getFilteredRecords);
 
 export default router;
