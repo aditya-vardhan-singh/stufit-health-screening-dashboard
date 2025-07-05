@@ -67,3 +67,87 @@ export const verifyOtp = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+//==========================================
+// 🔄 1. Forgot Password (Send OTP)
+export const forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const admin = await Admin.findOne({ username: email });
+    if (!admin)
+      return res
+        .status(404)
+        .json({ message: "Admin with this email does not exist" });
+
+    const otp = generateOtp();
+
+    await OtpToken.create({ email, otp, purpose: "forgotPassword" });
+
+    await sendEmail(email, "Forgot Password OTP", otp);
+
+    res
+      .status(200)
+      .json({ message: "OTP sent to your email for password reset" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// 🔄 2. Verify Forgot OTP (Return reset token)
+export const verifyForgotOtp = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+
+    const otpDoc = await OtpToken.findOne({
+      email,
+      otp,
+      purpose: "forgotPassword",
+    });
+
+    if (!otpDoc) {
+      return res.status(400).json({ message: "Invalid or expired OTP" });
+    }
+
+    await OtpToken.deleteMany({ email, purpose: "forgotPassword" }); // Cleanup OTPs
+
+    const token = jwt.sign({ email }, process.env.JWT_SECRET, {
+      expiresIn: "15m", // 15 minutes reset token
+    });
+
+    res.status(200).json({
+      message: "OTP verified. Use the token to reset your password.",
+      resetToken: token,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const resetPassword = async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(" ")[1];
+    const { newPassword } = req.body;
+
+    if (!token || !newPassword)
+      return res
+        .status(400)
+        .json({ message: "Token and new password are required" });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const email = decoded.email;
+
+    const admin = await Admin.findOne({ username: email });
+    if (!admin) return res.status(404).json({ message: "Admin not found" });
+
+    admin.password = newPassword;
+    await admin.save();
+
+    res.status(200).json({ message: "Password reset successfully" });
+  } catch (error) {
+    if (error.name === "TokenExpiredError") {
+      return res.status(401).json({ message: "Reset link has expired" });
+    }
+    res.status(500).json({ message: error.message });
+  }
+};

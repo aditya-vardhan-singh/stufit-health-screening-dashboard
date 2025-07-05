@@ -1,0 +1,256 @@
+[
+  {
+    "id": "STU001",
+    "name": "Ravi Sharma",
+    "school": "Green Valley High",
+    "session": "Jan - June",
+    "date": "2023-02-14",
+    "year": 2023,
+    "age": 14,
+    "defects": {
+      "eye": "myopia",
+      "mental": "anxiety"
+    }
+  },
+  {
+    "id": "STU002",
+    "name": "Anjali Verma",
+    "school": "Bright Future School",
+    "session": "July - Dec",
+    "date": "2023-09-20",
+    "year": 2023,
+    "age": 11,
+    "defects": {
+      "eye": "hypermetropia",
+      "dental": "cavity"
+    }
+  },
+  {
+    "id": "STU003",
+    "name": "Manoj Das",
+    "school": "Sunrise Academy",
+    "session": "Jan - June",
+    "date": "2022-04-10",
+    "year": 2022,
+    "age": 17,
+    "defects": {
+      "hearing": "partial hearing loss"
+    }
+  },
+  {
+    "id": "STU004",
+    "name": "Priya Sinha",
+    "school": "City Central School",
+    "session": "July - Dec",
+    "date": "2024-08-18",
+    "year": 2024,
+    "age": 9,
+    "defects": {
+      "fitness": "obesity"
+    }
+  },
+  {
+    "id": "STU005",
+    "name": "Amit Kumar",
+    "school": "Bright Future School",
+    "session": "Jan - June",
+    "date": "2023-05-01",
+    "year": 2023,
+    "age": 19,
+    "defects": {
+      "eye": "astigmatism",
+      "fitness": "underweight",
+      "mental": "exam stress"
+    }
+  },
+  {
+    "id": "STU006",
+    "name": "Sneha Yadav",
+    "school": "Sunrise Academy",
+    "session": "July - Dec",
+    "date": "2022-11-23",
+    "year": 2022,
+    "age": 13,
+    "defects": {
+      "hearing": "ear infection",
+      "ent": "sinusitis"
+    }
+  },
+  {
+    "id": "STU007",
+    "name": "Kabir Singh",
+    "school": "Green Valley High",
+    "session": "Jan - June",
+    "date": "2022-01-15",
+    "year": 2022,
+    "age": 10,
+    "defects": {
+      "orthopedic": "knock knees"
+    }
+  },
+  {
+    "id": "STU008",
+    "name": "Kavita Joshi",
+    "school": "City Central School",
+    "session": "Jan - June",
+    "date": "2023-03-21",
+    "year": 2023,
+    "age": 15,
+    "defects": {
+      "eye": "myopia",
+      "dental": "gum infection",
+      "ent": "allergies"
+    }
+  },
+  {
+    "id": "STU009",
+    "name": "Tushar Mehta",
+    "school": "St. Thomas School",
+    "session": "July - Dec",
+    "date": "2024-10-12",
+    "year": 2024,
+    "age": 8,
+    "defects": {
+      "mental": "depression"
+    }
+  },
+  {
+    "id": "STU010",
+    "name": "Ritika Chauhan",
+    "school": "Bright Future School",
+    "session": "Jan - June",
+    "date": "2022-05-20",
+    "year": 2022,
+    "age": 16,
+    "defects": {
+      "orthopedic": "flat feet",
+      "fitness": "posture issue"
+    }
+  },
+  {
+    "id": "STU011",
+    "name": "Aryan Khanna",
+    "school": "St. Thomas School",
+    "session": "July - Dec",
+    "date": "2023-12-01",
+    "year": 2023,
+    "age": 18,
+    "defects": {
+      "hearing": "wax build-up"
+    }
+  },
+  {
+    "id": "STU012",
+    "name": "Megha Rathi",
+    "school": "Sunrise Academy",
+    "session": "Jan - June",
+    "date": "2024-02-25",
+    "year": 2024,
+    "age": 12,
+    "defects": {
+      "eye": "color blindness"
+    }
+  },
+  {
+    "id": "STU013",
+    "name": "Rahul Bansal",
+    "school": "Green Valley High",
+    "session": "July - Dec",
+    "date": "2023-08-08",
+    "year": 2023,
+    "age": 14,
+    "defects": {
+      "mental": "anxiety",
+      "fitness": "low stamina"
+    }
+  },
+  {
+    "id": "STU014",
+    "name": "Deepika Bhatt",
+    "school": "City Central School",
+    "session": "Jan - June",
+    "date": "2022-03-10",
+    "year": 2022,
+    "age": 17,
+    "defects": {
+      "dental": "irregular teeth"
+    }
+  },
+  {
+    "id": "STU015",
+    "name": "Jatin Malhotra",
+    "school": "St. Thomas School",
+    "session": "July - Dec",
+    "date": "2024-09-17",
+    "year": 2024,
+    "age": 10,
+    "defects": {
+      "ent": "tonsillitis",
+      "eye": "hypermetropia"
+    }
+  },
+  {
+    "id": "STU016",
+    "name": "Nikita Rana",
+    "school": "Bright Future School",
+    "session": "Jan - June",
+    "date": "2022-06-05",
+    "year": 2022,
+    "age": 18,
+    "defects": {
+      "mental": "social withdrawal"
+    }
+  },
+  {
+    "id": "STU017",
+    "name": "Yash Dubey",
+    "school": "Green Valley High",
+    "session": "July - Dec",
+    "date": "2023-07-11",
+    "year": 2023,
+    "age": 15,
+    "defects": {
+      "fitness": "obesity",
+      "orthopedic": "scoliosis"
+    }
+  },
+  {
+    "id": "STU018",
+    "name": "Tanvi Singh",
+    "school": "Sunrise Academy",
+    "session": "Jan - June",
+    "date": "2024-04-14",
+    "year": 2024,
+    "age": 13,
+    "defects": {
+      "hearing": "ear infection",
+      "eye": "astigmatism"
+    }
+  },
+  {
+    "id": "STU019",
+    "name": "Rohit Patel",
+    "school": "City Central School",
+    "session": "July - Dec",
+    "date": "2022-08-28",
+    "year": 2022,
+    "age": 11,
+    "defects": {
+      "dental": "cavity",
+      "ent": "sinusitis"
+    }
+  },
+  {
+    "id": "STU020",
+    "name": "Shreya Jaiswal",
+    "school": "St. Thomas School",
+    "session": "Jan - June",
+    "date": "2023-06-30",
+    "year": 2023,
+    "age": 14,
+    "defects": {
+      "mental": "exam stress",
+      "fitness": "posture issue"
+    }
+  }
+]
