@@ -1,16 +1,17 @@
+// src/pages/HealthSummary.jsx
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import FilterPanel from "../components/FilterPanel";
 import DefectBarChart from "../components/DefectBarChart";
 import DefectDrilldown from "../components/DefectDrilldown";
-import healthData from "../data/healthData.json";
+import { getFilteredMedicalRecords } from "../api/medical"; // 🆕 API import
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/solid";
 
 export default function HealthSummary() {
-  const [filteredData, setFilteredData] = useState(healthData);
+  const [filteredData, setFilteredData] = useState([]); // 🔄 JSON hata diya
   const [selectedDefect, setSelectedDefect] = useState("eye");
-
   const { handleLogout } = useAuth();
   const navigate = useNavigate();
 
@@ -19,6 +20,33 @@ export default function HealthSummary() {
     navigate("/login");
   };
 
+  // 🆕 API se data fetch karne ka function
+  const fetchFilteredData = async (filters = {}) => {
+    try {
+      // Dates ko YYYY-MM-DD format me convert kiya
+      const formattedFilters = {
+        ...filters,
+        startDate: filters.startDate
+          ? filters.startDate.toISOString().split("T")[0]
+          : undefined,
+        endDate: filters.endDate
+          ? filters.endDate.toISOString().split("T")[0]
+          : undefined,
+      };
+
+      const res = await getFilteredMedicalRecords(formattedFilters);
+      setFilteredData(res.data); // 🔄 Data set kiya charts ke liye
+    } catch (err) {
+      console.error("Error fetching medical records:", err);
+    }
+  };
+
+  // 📦 Mount hone par initial data fetch
+  useEffect(() => {
+    fetchFilteredData();
+  }, []);
+
+  // 🔁 selectedDefect me fallback agar selected type nahi mila
   useEffect(() => {
     if (
       filteredData.length > 0 &&
@@ -59,8 +87,13 @@ export default function HealthSummary() {
         </button>
       </header>
 
+      {/* 🔄 Filter panel me API fetch ka trigger diya */}
       <div className="sticky top-4 z-20 bg-white/10 backdrop-blur-sm rounded-xl shadow-md p-4 mb-6">
-        <FilterPanel data={healthData} setFilteredData={setFilteredData} />
+        <FilterPanel
+          data={filteredData}
+          setFilteredData={() => {}}
+          onApplyFilters={fetchFilteredData}
+        />
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6">
