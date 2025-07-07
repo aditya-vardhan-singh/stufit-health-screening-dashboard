@@ -25,7 +25,7 @@ const ForgotPasswordForm = ({ onSubmit }) => {
       </h2>
 
       <div className="relative">
-        <HiMail className="absolute left-3 top-3 text-teal-500" />
+        <HiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" />
         <input
           type="email"
           placeholder="Email Address"

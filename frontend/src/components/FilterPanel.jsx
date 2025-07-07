@@ -14,7 +14,9 @@ export default function FilterPanel({ data, setFilteredData }) {
   const [search, setSearch] = useState("");
 
   const schoolOptions = [...new Set(data.map((d) => d.school))];
-  const yearOptions = [...new Set(data.map((d) => new Date(d.date).getFullYear()))];
+  const yearOptions = [
+    ...new Set(data.map((d) => new Date(d.date).getFullYear())),
+  ];
 
   useEffect(() => {
     let filtered = data;
@@ -28,7 +30,10 @@ export default function FilterPanel({ data, setFilteredData }) {
 
     if (school) filtered = filtered.filter((item) => item.school === school);
     if (session) filtered = filtered.filter((item) => item.session === session);
-    if (year) filtered = filtered.filter((item) => new Date(item.date).getFullYear().toString() === year);
+    if (year)
+      filtered = filtered.filter(
+        (item) => new Date(item.date).getFullYear().toString() === year
+      );
     if (ageGroup) {
       filtered = filtered.filter((item) => {
         const age = item.age;
@@ -62,20 +67,22 @@ export default function FilterPanel({ data, setFilteredData }) {
   };
 
   return (
-    <div className=" text-white px-4 py-3">
+    <div className="text-white px-4 py-3 max-w-full overflow-hidden">
       {/* Mobile View - Dropdown */}
-      <div className="block md:hidden">
+      <div className="block md:hidden max-w-full">
         <Disclosure>
           {({ open }) => (
-            <div>
-              <Disclosure.Button className="flex justify-between items-center w-full px-4 py-2 bg-[#1f2937] text-sm font-medium rounded-md hover:bg-[#374151]">
+            <div className="max-w-full">
+              <Disclosure.Button className="flex justify-between items-center w-full px-4 py-2 bg-[#1f2937] text-sm font-medium rounded-md hover:bg-[#374151] max-w-full">
                 Add Filters
                 <ChevronDownIcon
-                  className={`w-5 h-5 text-white transition-transform ${open ? "rotate-180" : ""}`}
+                  className={`w-5 h-5 text-white transition-transform ${
+                    open ? "rotate-180" : ""
+                  }`}
                 />
               </Disclosure.Button>
 
-              <Disclosure.Panel className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Disclosure.Panel className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-full overflow-hidden px-1">
                 <FilterControls />
               </Disclosure.Panel>
             </div>
@@ -84,7 +91,7 @@ export default function FilterPanel({ data, setFilteredData }) {
       </div>
 
       {/* Desktop View - Navbar Style */}
-      <div className="hidden md:flex md:flex-wrap md:items-center md:gap-3 md:justify-start mt-2">
+      <div className="hidden md:flex md:flex-wrap md:items-center md:gap-3 md:justify-center mt-2">
         <FilterControls />
       </div>
     </div>
@@ -94,32 +101,36 @@ export default function FilterPanel({ data, setFilteredData }) {
     return (
       <>
         {/* Date Range */}
-        <div className="w-full sm:w-auto">
-          <DatePicker
-            selectsRange
-            startDate={startDate}
-            endDate={endDate}
-            onChange={(update) => setDateRange(update)}
-            placeholderText="Date Range"
-            showMonthDropdown
-            showYearDropdown
-            dropdownMode="select"
-            isClearable
-            className="bg-[#1f2937] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full"
-          />
-        </div>
+
+        <DatePicker
+          selectsRange
+          startDate={startDate}
+          endDate={endDate}
+          onChange={(update) => setDateRange(update)}
+          placeholderText="Date Range"
+          showMonthDropdown
+          showYearDropdown
+          dropdownMode="select"
+          isClearable
+          className="bg-[#1f2937] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full "
+        />
 
         {/* School */}
-        <select
-          value={school}
-          onChange={(e) => setSchool(e.target.value)}
-          className="bg-[#1f2937] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full sm:w-[150px]"
-        >
-          <option value="">School</option>
-          {schoolOptions.map((s, i) => (
-            <option key={i} value={s}>{s}</option>
-          ))}
-        </select>
+        <div className="w-full sm:w-[150px] max-w-full overflow-hidden">
+          <select
+            value={school}
+            onChange={(e) => setSchool(e.target.value)}
+            className="bg-[#1f2937] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full truncate"
+            style={{ maxWidth: "100%" }}
+          >
+            <option value="">School</option>
+            {schoolOptions.map((s, i) => (
+              <option key={i} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* Session */}
         <select
@@ -140,7 +151,9 @@ export default function FilterPanel({ data, setFilteredData }) {
         >
           <option value="">Year</option>
           {yearOptions.map((y, i) => (
-            <option key={i} value={y}>{y}</option>
+            <option key={i} value={y}>
+              {y}
+            </option>
           ))}
         </select>
 
