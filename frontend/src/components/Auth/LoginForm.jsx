@@ -19,7 +19,7 @@ const LoginForm = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="relative">
-        <HiMail className="absolute left-3 top-3 text-teal-500" />
+        <HiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" />
         <input
           type="email"
           value={email}
@@ -31,7 +31,7 @@ const LoginForm = ({ onSubmit }) => {
       </div>
 
       <div className="relative">
-        <HiLockClosed className="absolute left-3 top-3 text-teal-500" />
+        <HiLockClosed className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" />
         <input
           type="password"
           value={password}

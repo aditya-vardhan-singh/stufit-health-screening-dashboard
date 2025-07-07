@@ -40,16 +40,16 @@ export default function HealthSummary() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-800 via-teal-700 to-blue-900 text-white font-sans p-4 md:p-6">
       <header className="relative mb-8 flex items-center justify-between bg-white/10 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center align-middle justify-center gap-4">
           <img
             src="/circlelogo.png"
             alt="StuFit Logo"
             className="w-16 h-16 object-contain"
           />
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">
-            Health Screening Summary
-          </h1>
         </div>
+        <h1 className="text-2xl text-center md:text-3xl font-menbere font-semibold tracking-tight">
+          Health Screening Summary
+        </h1>
         <button
           onClick={onLogout}
           title="Logout"

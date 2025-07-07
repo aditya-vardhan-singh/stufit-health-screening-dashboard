@@ -23,7 +23,7 @@ const OtpVerificationForm = ({ onSubmit }) => {
       </p>
 
       <div className="relative">
-        <HiShieldCheck className="absolute left-3 top-3 text-teal-500" />
+        <HiShieldCheck className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" />
         <input
           type="text"
           value={otp}

@@ -31,7 +31,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
       </h2>
 
       <div className="relative">
-        <HiLockClosed className="absolute left-3 top-3 text-teal-500" />
+        <HiLockClosed className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" />
         <input
           type="password"
           placeholder="New Password"
@@ -43,7 +43,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
       </div>
 
       <div className="relative">
-        <HiLockClosed className="absolute left-3 top-3 text-teal-500" />
+        <HiLockClosed className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" />
         <input
           type="password"
           placeholder="Confirm Password"
