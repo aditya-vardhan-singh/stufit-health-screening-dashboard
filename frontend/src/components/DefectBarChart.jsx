@@ -68,7 +68,7 @@ export default function DefectBarChart({ data, onBarClick }) {
         borderColor: "#ffffff", // White border color
         borderWidth: 1, // Border thickness
         borderRadius: 8,
-        barThickness: 36,
+        barThickness: window.innerWidth < 768 ? 24 : 36,
         hoverBorderColor: "#f1f5f9", // Lighter border on hover
         hoverBorderWidth: 2,
       },
