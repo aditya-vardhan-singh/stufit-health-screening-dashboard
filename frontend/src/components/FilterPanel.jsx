@@ -1,69 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
-export default function FilterPanel({ data, setFilteredData }) {
+export default function FilterPanel({ data, setFilteredData, onApplyFilters }) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const [school, setSchool] = useState("");
   const [session, setSession] = useState("");
   const [year, setYear] = useState("");
-  const [ageGroup, setAgeGroup] = useState("");
-  const [search, setSearch] = useState("");
 
   const schoolOptions = [...new Set(data.map((d) => d.school))];
   const yearOptions = [
     ...new Set(data.map((d) => new Date(d.date).getFullYear())),
   ];
 
-  useEffect(() => {
-    let filtered = data;
-
-    if (startDate && endDate) {
-      filtered = filtered.filter((item) => {
-        const d = new Date(item.date);
-        return d >= startDate && d <= endDate;
-      });
-    }
-
-    if (school) filtered = filtered.filter((item) => item.school === school);
-    if (session) filtered = filtered.filter((item) => item.session === session);
-    if (year)
-      filtered = filtered.filter(
-        (item) => new Date(item.date).getFullYear().toString() === year
-      );
-    if (ageGroup) {
-      filtered = filtered.filter((item) => {
-        const age = item.age;
-        if (ageGroup === "<10") return age < 10;
-        if (ageGroup === "10–14") return age >= 10 && age <= 14;
-        if (ageGroup === "15–18") return age >= 15 && age <= 18;
-        if (ageGroup === "18+") return age > 18;
-        return true;
-      });
-    }
-
-    if (search.trim() !== "") {
-      filtered = filtered.filter(
-        (item) =>
-          item.name.toLowerCase().includes(search.toLowerCase()) ||
-          item.id.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-
-    setFilteredData(filtered);
-  }, [startDate, endDate, school, session, year, ageGroup, search]);
-
   const handleReset = () => {
     setDateRange([null, null]);
     setSchool("");
     setSession("");
     setYear("");
-    setAgeGroup("");
-    setSearch("");
-    setFilteredData(data);
+    onApplyFilters({});
   };
 
   return (
@@ -101,7 +59,6 @@ export default function FilterPanel({ data, setFilteredData }) {
     return (
       <>
         {/* Date Range */}
-
         <DatePicker
           selectsRange
           startDate={startDate}
@@ -112,7 +69,7 @@ export default function FilterPanel({ data, setFilteredData }) {
           showYearDropdown
           dropdownMode="select"
           isClearable
-          className="bg-[#1f2937] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full "
+          className="bg-[#1f2937] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full"
         />
 
         {/* School */}
@@ -121,7 +78,6 @@ export default function FilterPanel({ data, setFilteredData }) {
             value={school}
             onChange={(e) => setSchool(e.target.value)}
             className="bg-[#1f2937] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full truncate"
-            style={{ maxWidth: "100%" }}
           >
             <option value="">School</option>
             {schoolOptions.map((s, i) => (
@@ -157,27 +113,21 @@ export default function FilterPanel({ data, setFilteredData }) {
           ))}
         </select>
 
-        {/* Age Group 
-        <select
-          value={ageGroup}
-          onChange={(e) => setAgeGroup(e.target.value)}
-          className="bg-[#1f2937] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full sm:w-[100px]"
+        {/* Apply Button */}
+        <button
+          onClick={() =>
+            onApplyFilters({
+              startDate,
+              endDate,
+              schoolName: school,
+              session,
+              year,
+            })
+          }
+          className="bg-blue-600 hover:bg-blue-700 px-4 py-1 text-sm rounded-lg w-full sm:w-auto"
         >
-          <option value="">Age</option>
-          <option value="<10">&lt;10</option>
-          <option value="10–14">10–14</option>
-          <option value="15–18">15–18</option>
-          <option value="18+">18+</option>
-        </select> */}
-
-        {/* Search 
-        <input
-          type="text"
-          placeholder="Search Name or ID"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="bg-[#1f2937] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full sm:w-[160px]"
-        /> */}
+          Apply
+        </button>
 
         {/* Reset */}
         <button
